@@ -13,34 +13,8 @@ server.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var postRouter = require("./routes/post-routes");
+server.use('/api/post', postRouter);
 
 if (serverConf.portStart < serverConf.portEnd) {
     for (var sport = serverConf.portStart; sport < serverConf.portEnd; sport++) {
