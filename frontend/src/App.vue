@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     
-    <entry></entry>
+    <jokecomments></jokecomments>
   </div>
 </template>
 
@@ -10,17 +10,20 @@
 // import { store } from '../store'
 import Navbar from './components/Navbar'
 import Entry from './components/Entry'
+import Jokecomments from './components/Jokecomments'
 
 export default {
   name: 'app',
   components: {
     Navbar,
-    Entry
+    Entry,
+    Jokecomments
   }
 }
 </script>
 
 <style>
+
 @font-face {
     font-family: Klavika Bold;
     src: url('./assets/KlavikaBold.ttf');
