@@ -1,12 +1,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cors = require('cors')
 
 var serverConf = require('./config/serverconfig');
 var database = require('./config/dbconfig');
 var server = express();
 
 
-
+server.options('*', cors());
 server.use(express.static(__dirname + "/www"));
 server.use(bodyParser.json()); //JSON middleware
 server.use(bodyParser.urlencoded({ extended: true }));
