@@ -5,7 +5,7 @@ var postSchema = new mongoose.Schema({
     title: {type:String, required: true},
     body: {type:String, required: true},
     created: {type:Date, required: true},
-    votes: {type: Number, required: true, default: 0},
+    votes: {type: Object, required: true},
     category: {type: String, required: true},
     comments: {type: Array, required: true},
 

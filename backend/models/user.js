@@ -6,9 +6,10 @@ var userSchema = new mongoose.Schema({
     userName: {type: String, required: true},
     created: {type: Date, required: true},
     age: {type: Number, required: true},
-    passwordHash: {type: String, required: true}
+    passwordHash: {type: String, required: true},
 
     //RELATIONSHIPS
+    sessionId: {type: ObjectId, ref:"Session", required: true}
 })
 
 var User = mongoose.model("User", userSchema);
