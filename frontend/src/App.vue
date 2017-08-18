@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <navbar></navbar>
   </div>
 </template>
 
 <script>
+//for when we need a store
+// import { store } from '../store'
 import Navbar from './components/Navbar'
 
 export default {
