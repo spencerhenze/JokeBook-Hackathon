@@ -14,33 +14,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var
 
 if (serverConf.portStart < serverConf.portEnd) {
     for (var sport = serverConf.portStart; sport < serverConf.portEnd; sport++) {
