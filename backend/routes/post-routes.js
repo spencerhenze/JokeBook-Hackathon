@@ -8,6 +8,7 @@ router.post('/', (req, res, next) => {
         text: req.body.text,
         user: req.body.user
     });
+    res.send({ message: "success" });
 });
 
 
