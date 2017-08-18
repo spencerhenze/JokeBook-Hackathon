@@ -1,7 +1,10 @@
 var mongoose= require("mongoose");
 var ObjectId = mongoose.Schema.ObjectId;
+var Schema = mongoose.Schema;
+var bcrypt = require('bcryptjs')
+const SALT_FACTOR = 10; 
 
-var userSchema = new mongoose.Schema({
+var schema = new Schema({
     email: {type: String, required: true},
     userName: {type: String, required: true},
     created: {type: Date, required: true},
@@ -12,7 +15,34 @@ var userSchema = new mongoose.Schema({
     sessionId: {type: ObjectId, ref:"Session", required: true}
 })
 
-var User = mongoose.model("User", userSchema);
+schema.pre('save', function (next) {
+  var user = this;
+  if (!user.isModified('password')) {
+    return next();
+  }
+  bcrypt.genSalt(SALT_FACTOR, function (err, salt) {
+    if (err) {
+      return next(err);
+    } else {
+      bcrypt.hash(user.password, salt, function (err, hash) {
+        user.password = hash;
+        next();
+      });
+    }
+  });
+});
 
-module.exports = User;
+schema.methods.validatePassword = function (password) {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(password, this.password, function (err, isMatch) {
+      if (err || !isMatch) {
+        return reject(err);
+      }
+      return resolve(isMatch);
+    });
+  })
+};
+
+
+module.exports = mongoose.model('User', schema);
 
