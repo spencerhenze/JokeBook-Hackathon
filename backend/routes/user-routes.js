@@ -45,6 +45,19 @@ router.put('/:userId', function (req, res, next){
 })
 
 
+// delete a user 
+router.delete('/:userId', (req, res, next) => {
+    var userId = req.params.userId;
+    
+    //find the user and blow them away!
+    User.findByIdAndRemove(userId)
+        .then(user => {
+            res.send({ message: `So long user: ${userId}.`})
+        })
+        .catch(next);
+})
+
+
 
 // default error handler (defining next)
 router.use(defaultErrorHandler);
