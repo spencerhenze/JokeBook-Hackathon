@@ -45,5 +45,3 @@ schema.methods.validatePassword = function(password) {
 
 
 module.exports = mongoose.model('User', schema);
-
-module.exports = User;
