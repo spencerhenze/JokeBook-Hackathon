@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -13,7 +12,7 @@
                 <span class="icon-bar"></span>
               </button>
           <div class="icon">
-            <span class="j">j</span>
+            <span class="j">J</span>
           </div>
         </div>
 
@@ -22,21 +21,30 @@
           <div class="navbar-form navbar-left">
             <form @submit.prevent="search()">
               <div class="form-group">
-                <input type="text" class="form-control input-lg" placeholder="Search" v-model="query">
+                <input type="text" class="form-control input-lg" placeholder="Search"> <!-- v-model="query"-->
                 <button type="submit" class="btn btn-default btn-lg">Find Joke</button>
               </div>
+            </form>
+          </div>
+          <div class="navbar-form navbar-left login">
+            <form @submit.prevent="login()">
+              <div class="form-group">
+                <input type="text" class="form-control  " placeholder="Username"> <!-- v-model="query"-->
+              </div>
+                <input type="text" class="form-control" placeholder="Password"> <!-- v-model="query"-->
+                <button type="submit" class="btn btn-default btn-login">Login/Register</button>
             </form>
           </div>
 
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle white-text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="white-text">Search By Category</span> <span class="caret white-text"></span></a>
+              <a href="#" class="dropdown-toggle white-text" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="white-text">Jokes By Category</span> <span class="caret white-text"></span></a>
               <ul class="dropdown-menu">
                 <li @click="getJokes('dad-jokes')">Dad Jokes</li>
                 <li @click="getJokes('redneck-jokes')">Redneck Jokes</li>
                 <li @click="getJokes('code-jokes')">Code Jokes</li>
                 <li role="separator" class="divider"></li>
-                <li @click="getJokes('all-jokes')">See All Joke Categories</li>
+                <li @click="getJokes('all-jokes')">All Joke Categories</li>
               </ul>
             </li>
           </ul>
@@ -53,7 +61,7 @@
 
 <script>
   //for when we need a store
-  import { store } from '../store'
+  // import { store } from '../store'
   import $ from 'jquery'
   export default {
     name: 'navbar',
@@ -75,14 +83,23 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    @font-face {
-    font-family: Klavika Bold;
-    src: url('../assets/KlavikaBold.ttf');
-    }
+    
     .navbar {
       margin-top: -5vh;
       background-color: #3b5998;
-      font-family: Klavika Bold;
+      /* font-family: Klavika Bold; */
+    }
+
+
+    .login{
+      padding: .3vh 0 0 5vw;
+
+    }
+
+    .btn-login{
+      background-color: #8b9dc3;
+      color: white;
+      font-size: 1.3vh;
     }
 
     .white-text {
@@ -93,18 +110,18 @@
       color: black;
     }
 
+    .dropdown{
+      padding-top: .5vh;
+    }
+
     li {
       color: black;
-      font-size: 3rem;
+      font-size: 2rem;
+      padding: 1rem;
     }
 
     .navbar-header{
       margin-left: 25rem;
-    }
-  
-
-    .navbar-right {
-      padding-right: 15rem;
     }
 
     .icon{
