@@ -76,7 +76,7 @@
       // .then(res =>{
       //   this.results = res
       // })
-    }
+    },
   }
 
 </script>

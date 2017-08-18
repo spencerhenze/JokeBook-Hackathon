@@ -1,18 +1,25 @@
 <template>
+
   <div class="entry">
+    <navbar></navbar>
     <div class="container-fluid">
       <div class="row">
+        <div class="col-xs-12">
+          <h1 class="top-ten">All-Time Top 10 Jokebook Jokes</h1>
+          <hr>
+        </div>
+      </div>
+      <div class="row">
         <div class="heading">
-          <div class="col-xs-2">
+          <div class="col-xs-1">
             <div class="row">
               <div class="col-xs-3">
                 <span>Likes</span>
               </div>
-              <div class="col-xs-offset-6 col-xs-1">
+              <div class="col-xs-offset-4 col-xs-1">
                 <span>Rank</span>
               </div>
             </div>
-
           </div>
           <div class="col-xs-1">
             <span>Joke</span>
@@ -23,21 +30,24 @@
           <div class="col-xs-1">
             <span>Tags</span>
           </div>
+          <div class="col-xs-1">
+            <span>Comments</span>
+          </div>
         </div>
         <hr>
       </div>
       <div v-for="joke in jokes">
         <div class="row">
-          <div class="col-xs-2">
+          <div class="col-xs-1">
             <div class="row">
               <div class="col-xs-3">
                 <span class="like">{{joke.votes}}</span>
               </div>
               <div class="col-xs-3">
-                <span class="glyphicon glyphicon-thumbs-up thumb"></span>
+                <span @click="vote(up)"class="glyphicon glyphicon-thumbs-up thumb"></span>
               </div>
               <div class="col-xs-3">
-                <span class="glyphicon glyphicon-thumbs-down thumb"></span>
+                <span @click="vote(down)"class="glyphicon glyphicon-thumbs-down thumb"></span>
               </div>
               <div class="col-xs-3">
                 <span class="rank">#1</span>
@@ -46,7 +56,7 @@
           </div>
           <div class="col-xs-8">
             <div class="joke">
-              <h5>
+              <h5 class="joke-text">
                 {{joke.title}}
               </h5>
             </div>
@@ -59,6 +69,11 @@
           <div class="col-xs-1">
             <h5 class="tags">
               {{joke.categories}}
+            </h5>
+          </div>
+          <div class="col-xs-1">
+            <h5 @click="comments(id)"class="comments">
+              Comments
             </h5>
           </div>
         </div>
@@ -79,6 +94,12 @@
       }
     },
     methods: {
+      vote(type){
+        store.vote(type)
+      },
+      comment(id){
+        store.comment(id)
+      }
 
     },
     components: {
@@ -89,6 +110,15 @@
 </script>
 
 <style scoped>
+ @font-face {
+    font-family: Klavika;
+    src: url('../assets/klavika.otf');
+    }
+
+.top-ten{
+  margin-bottom: 5rem;
+}
+
   .thumb {
     color: #3b5998;
     font-size: 20px;
@@ -107,6 +137,7 @@
 
   .tags {
     font-size: 20px;
+    font-family: Klavika;
   }
 
   .rank {
@@ -119,13 +150,26 @@
     flex-wrap: wrap;
     /* justify-content: center; */
     /* margin-top: 1vh; */
-    font-size: 20px;
     margin-left: 2vw;
+  }
+ 
+
+
+  .joke-text{
+    font-size: 2rem;
+    font-weight: normal;
+    font-family: Klavika;
   }
 
   .punchline {
 
     margin-top: 1vh;
-    font-size: 20px;
+    font-size: 2rem;
+    font-family: Klavika;
+  }
+
+  .comments{
+    font-family: Klavika;
+    font-size: 2rem;
   }
 </style>
