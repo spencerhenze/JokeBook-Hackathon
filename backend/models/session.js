@@ -10,7 +10,7 @@ var sessionSchema = new mongoose.Schema({
     userId: {type:ObjectId, ref:"User", required: true},
 })
 
-var Session = mongoose.model("Session", userSchema);
+var Session = mongoose.model("Session", sessionSchema);
 
 
 module.exports = Session;

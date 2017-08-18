@@ -5,7 +5,7 @@ var postSchema = new mongoose.Schema({
     title: {type:String, required: true},
     body: {type:String, required: true},
     created: {type:Date, required: true},
-    votes: {type: Number, required: true, default: 0},
+    votes: {type: Object, required: true},
     category: {type: String, required: true},
     comments: {type: Array, required: true},
 
@@ -13,7 +13,7 @@ var postSchema = new mongoose.Schema({
     userId: {type:ObjectId, ref:"User", required: true},
 })
 
-var Post = mongoose.model("Post", userSchema);
+var Post = mongoose.model("Post", postSchema);
 
 // rough comment blueprint{
 //     text: "great post",
