@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var serverConf = require('./config/serverconfig');
+var database = require('./config/dbconfig');
 var server = express();
 
 
@@ -9,6 +10,37 @@ var server = express();
 server.use(express.static(__dirname + "/www"));
 server.use(bodyParser.json()); //JSON middleware
 server.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 if (serverConf.portStart < serverConf.portEnd) {
     for (var sport = serverConf.portStart; sport < serverConf.portEnd; sport++) {
