@@ -13,7 +13,7 @@ var postSchema = new mongoose.Schema({
     userId: {type:ObjectId, ref:"User", required: true},
 })
 
-var Post = mongoose.model("Post", userSchema);
+var Post = mongoose.model("Post", postSchema);
 
 // rough comment blueprint{
 //     text: "great post",
