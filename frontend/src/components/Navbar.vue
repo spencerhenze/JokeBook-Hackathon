@@ -96,6 +96,9 @@
         }
         store.login(obj, toggleLogin)
         // toggleLogin()
+      },
+      getJokes(joke){
+        store.getJokes(joke);
       }
     },
     components: {
