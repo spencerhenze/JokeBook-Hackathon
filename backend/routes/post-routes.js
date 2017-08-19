@@ -1,20 +1,41 @@
 var express = require('express');
 var router = express.Router();
 
-var testPosts = [];
+var posts = require('../models/post.js');
+
 router.post('/', (req, res, next) => {
     testPosts.push({
         title: req.body.title,
         text: req.body.text,
-        user: req.body.user
+        user: req.body.user,
+        votes: 10
     });
     res.send({ message: "success" });
 });
 
+router.get('/top', (req, res, next) => {
+    var response = [];
+    posts.find({}).limit(10).sort({ totalVotes: 1 }).exec(post => {
+        res.send(post);
+    });
+
+    res.send(response);
+})
 
 router.get('/', (req, res, next) => {
     res.send(testPosts);
 });
+
+router.put('/:postId/vote', (req, res, next) => {
+    posts.findById(req.params.postId).then((post) => {
+        post.votes[req.session.uid] = req.body.vote;
+
+        for (vote in post.votes) {
+            post.totalVotes += vote;
+        }
+
+    });
+})
 
 
 router.use(handleError);
