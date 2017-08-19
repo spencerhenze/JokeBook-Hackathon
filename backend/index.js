@@ -7,7 +7,7 @@ var serverConf = require('./config/serverconfig');
 var database = require('./config/dbconfig');
 var server = express();
 
-server.options('*', cors());
+server.use(cors());
 
 server.use(sessions);
 server.use(express.static(__dirname + "/www"));

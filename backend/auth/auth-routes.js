@@ -23,10 +23,10 @@ router.post("/register", (req, res) => {
 
 });
 
-
 router.post("/login", (req, res) => {
-    //first check if username is a email or username
-    //console.log(req);
+    console.log('youre hitting login')
+        //first check if username is a email or username
+        //console.log(req);
 
     Users.findOne({ email: req.body.email }).then((user) => {
         //console.log(req.body.password);
