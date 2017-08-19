@@ -32,26 +32,40 @@
                     </h5>
                 </div>
                 <div class="col-xs-1">
-                    <h5 class="tags">
-                        {{jokes[0].categories}}
+                    <h5 @click="search()"class="tags">
+                        Tags: {{jokes[0].categories}}
                     </h5>
                 </div>
             </div>
-            <hr>
-            <div v-for="comment in jokes[0].comments">
+        </div>
+        <div class="postLine">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="user">
-                            <p>username</p>
-                        </div>
-                        <div class="comment-text">
-                            {{comment}}
-                            <hr>
+                        <form @submit.prevent="comment()">
+                            <div class="form-group">
+                                <input type="text" class="form-control input-lg" placeholder="...">
+                                <button type="submit" class="btn btn-default btn-lg">Post Comment</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div v-for="comment in jokes[0].comments">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="user">
+                                <p>username</p>
+                            </div>
+                            <div class="comment-text">
+                                {{comment}}
+                                <hr>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </template>
 
@@ -77,6 +91,9 @@
                 if (show == true) {
                     this.show = false;
                 }
+            },
+            search(){
+                
             }
         },
         components: {
@@ -91,6 +108,11 @@
     @font-face {
         font-family: Klavika;
         src: url('../assets/klavika.otf');
+    }
+
+    .postLine {
+        padding-top: 1rem;
+        background-color: #dfe3ee;
     }
 
     .thumb {
@@ -123,7 +145,7 @@
 
 
     .joke-text {
-        font-size: 2rem;
+        font-size: 3rem;
         font-weight: normal;
         font-family: Klavika;
     }

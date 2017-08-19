@@ -31,7 +31,7 @@
             <span>Tags</span>
           </div>
           <div class="col-xs-1">
-            <span>Comments</span>
+            <span>Commen</span>
           </div>
         </div>
         <hr>
@@ -44,10 +44,10 @@
                 <span class="like">{{joke.votes}}</span>
               </div>
               <div class="col-xs-3">
-                <span @click="vote(up)"class="glyphicon glyphicon-thumbs-up thumb"></span>
+                <span @click="vote(up)" class="glyphicon glyphicon-thumbs-up thumb"></span>
               </div>
               <div class="col-xs-3">
-                <span @click="vote(down)"class="glyphicon glyphicon-thumbs-down thumb"></span>
+                <span @click="vote(down)" class="glyphicon glyphicon-thumbs-down thumb"></span>
               </div>
               <div class="col-xs-3">
                 <span class="rank">#1</span>
@@ -56,7 +56,7 @@
           </div>
           <div class="col-xs-8">
             <div class="joke">
-              <h5 @click="togglePunch(show)"class="joke-text">
+              <h5 @click="togglePunch(show)" class="joke-text">
                 {{joke.title}}
               </h5>
             </div>
@@ -72,7 +72,7 @@
             </h5>
           </div>
           <div class="col-xs-1">
-            <h5 @click="comments(id)"class="comments">
+            <h5 @click="comments(id)" class="comments">
               Comments
             </h5>
           </div>
@@ -95,20 +95,20 @@
       }
     },
     methods: {
-      vote(type){
+      vote(type) {
         store.vote(type)
       },
-      comment(id){
+      comment(id) {
         store.comment(id)
       },
-       togglePunch(show) {
-                if (show == false) {
-                    this.show = true;
-                }
-                if (show == true) {
-                    this.show = false;
-                }
-            }
+      togglePunch(show) {
+        if (show == false) {
+          this.show = true;
+        }
+        if (show == true) {
+          this.show = false;
+        }
+      }
 
     },
     components: {
@@ -119,14 +119,18 @@
 </script>
 
 <style scoped>
- @font-face {
+  @font-face {
     font-family: Klavika;
     src: url('../assets/klavika.otf');
-    }
+  }
 
-.top-ten{
-  margin-bottom: 5rem;
+.container-fluid{
+  background-color: #dfe3ee;
 }
+
+  .top-ten {
+    margin-bottom: 5rem;
+  }
 
   .thumb {
     color: #3b5998;
@@ -161,10 +165,10 @@
     /* margin-top: 1vh; */
     margin-left: 2vw;
   }
- 
 
 
-  .joke-text{
+
+  .joke-text {
     font-size: 2rem;
     font-weight: normal;
     font-family: Klavika;
@@ -177,7 +181,7 @@
     font-family: Klavika;
   }
 
-  .comments{
+  .comments {
     font-family: Klavika;
     font-size: 2rem;
   }
