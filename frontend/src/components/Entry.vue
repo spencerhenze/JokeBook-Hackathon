@@ -32,54 +32,57 @@
         </div>
         <hr>
       </div>
-      <div v-for="joke in jokes">
-        <div class="row">
-          <div class="col-xs-1">
-            <div class="row">
-              <div class="col-xs-3">
-                <span class="like">{{joke.votes}}</span>
-              </div>
-              <div class="col-xs-3">
-                <span @click="vote(up, postId, userId)" class="glyphicon glyphicon-thumbs-up thumb"></span>
-              </div>
-              <div class="col-xs-3">
-                <span @click="vote(down, postId, userId)" class="glyphicon glyphicon-thumbs-down thumb"></span>
-              </div>
-              <div class="col-xs-3">
-                <span class="rank">#1</span>
+      <!-- <div v-if=""> -->
+        <div v-for="joke in posts">
+          <div class="row">
+            <div class="col-xs-1">
+              <div class="row">
+                <div class="col-xs-3">
+                  <span class="like">{{joke.totalVotes}}</span>
+                </div>
+                <div class="col-xs-3">
+                  <span @click="vote(up, postId, userId)" class="glyphicon glyphicon-thumbs-up thumb"></span>
+                </div>
+                <div class="col-xs-3">
+                  <span @click="vote(down, postId, userId)" class="glyphicon glyphicon-thumbs-down thumb"></span>
+                </div>
+                <div class="col-xs-3">
+                  <span class="rank">#1</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-xs-8">
-            <div class="joke">
-              <h5 @click="togglePunch(show, postId)" class="joke-text">
-                {{joke.title}}
+            <div class="col-xs-8">
+              <div class="joke">
+                <h5 @click="togglePunch(show, postId)" class="joke-text">
+                  {{joke.title}}
+                </h5>
+              </div>
+            </div>
+            <div class="col-xs-1">
+              <h5 v-if="show" class="punchline">
+                "{{joke.body}}"
               </h5>
             </div>
+            <div class="col-xs-1">
+              <h5 class="tags">
+                {{joke.category}}
+              </h5>
+            </div>
+            <div class="col-xs-1">
+              <a><h5 @click="comments(id)" class="comments">
+                Comments
+              </h5></a>
+            </div>
           </div>
-          <div class="col-xs-1">
-            <h5 v-if="show" class="punchline">
-              "{{joke.body}}"
-            </h5>
-          </div>
-          <div class="col-xs-1">
-            <h5 class="tags">
-              {{joke.categories}}
-            </h5>
-          </div>
-          <div class="col-xs-1">
-            <a><h5 @click="comments(id)" class="comments">
-              Comments
-            </h5></a>
-          </div>
+          <hr>
         </div>
-        <hr>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
+  // import $ from 'jquery'
   import { store } from '../store'
   import Navbar from './Navbar'
   import ENavbar from './ENavbar'
@@ -87,7 +90,7 @@
     name: 'entry',
     data() {
       return {
-        jokes: store.state.results,
+        posts: store.state.posts,
         show: false
       }
     },

@@ -1,13 +1,12 @@
 <template>
-  <div id="app">
-    
+  <div onload="getJokes" id="app">
     <entry></entry>
   </div>
 </template>
 
 <script>
 //for when we need a store
-// import { store } from '../store'
+import { store } from './store'
 import Navbar from './components/Navbar'
 import Entry from './components/Entry'
 import Jokecomments from './components/Jokecomments'
@@ -22,6 +21,12 @@ export default {
     Entry,
     Jokecomments,
     Jokepost
+  },
+  
+  methods:{
+      getJokes(){
+        store.getJokes()
+      }
   }
 }
 </script>

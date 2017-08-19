@@ -42,9 +42,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12">
-                        <form @submit.prevent="comment()">
+                        <form @submit.prevent="comment(userId, postId)">
                             <div class="form-group">
-                                <input type="text" class="form-control input-lg" placeholder="...">
+                                <input type="text" class="form-control input-lg" placeholder="..." v-model="comment">
                                 <button type="submit" class="btn btn-default btn-lg">Post Comment</button>
                             </div>
                         </form>
@@ -77,7 +77,8 @@
         data() {
             return {
                 jokes: store.state.results,
-                show: false
+                show: false,
+                comment: ''
             }
         },
         methods: {
@@ -95,8 +96,9 @@
             search(){
 
             },
-            addComment(comment, userId){
-                store.addComment(comment, userId)
+            addComment(userId, postId){
+                var comment = this.comment
+                store.addComment(userId, postId, comment)
             }
         },
         components: {

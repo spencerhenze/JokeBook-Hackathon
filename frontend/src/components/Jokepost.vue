@@ -22,8 +22,11 @@
             </div> -->
             <div class="form-group">
                 <label for="comment">New Joke Post:</label>
-                <textarea class="form-control" rows="5" id="comment" v-model="joke"></textarea>
-                <button @click="addPost(userId)" type="submit" class="btn btn-info submit-button" value="Post">Post</button>
+                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <input type="text" v-model="title">
+                <input type="text" v-model="body">
+                <input type="text" v-model="category">
+                <button @click="addPost()" type="button" class="btn btn-info submit-button" value="Post">Post</button>
             </div>
         </div>
     </div>
@@ -37,19 +40,25 @@
         data() {
             return {
                 jokeList: store.state.posts,
-                joke: ''
+                title: '',
+                body: '',
+                category: ''
             }
         },
         methods: {
 
             addPost() {
-                joke = this.joke
-                state.addPost(joke)
+                var joke = {
+                    title: this.title,
+                    body: this.body,
+                    category: this.category
+                }
+                store.addJoke(joke)
             },
-            removePost(joke, userId) {
-                var index = posts.indexOf(joke)
-                state.posts.splice(index, 1)
-            }
+            // removePost(joke, userId) {
+            //     var index = posts.indexOf(joke)
+            //     state.posts.splice(index, 1)
+            // }
         },
         components: {
             Navbar

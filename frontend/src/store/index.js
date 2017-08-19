@@ -1,7 +1,7 @@
 import $ from 'jquery'
 
 
-var ip = "//192.168.0.93:3003";
+var ip = "//127.0.0.1:3003";
 var state = {
     results: [
         {
@@ -37,9 +37,8 @@ var state = {
             comments: ['Funny Joke']
         }
     ],
-    posts: [
-
-    ]
+    posts: []
+    
 }
 
 var store = {
@@ -74,13 +73,14 @@ var store = {
 
     // },
 
-    // getJokes(){
-    //     $.get(ip + '/post/top')
-    //         .then((res)=>{
-
-    //         })
-    //         .catch(()=> console.log('error'))
-    // },
+    getJokes(){
+        $.get(ip + '/api/post/top')
+            .then((res)=>{
+                console.log(res)
+                state.posts = res
+            })
+            .catch(()=> console.log('error'))
+    },
 
     login(obj, cb){
         $.post(ip + "/login", obj)
@@ -97,10 +97,10 @@ var store = {
             .catch(() => console.log('error'))
     },
     addJoke(joke){
-        $.post(ip + "/post", joke)
-            .then((res) => {
-            
+        $.post(ip + "/api/post", joke)
+        .then((res) => {
                 if (res.message){
+                    getJokes()
                     alert('Posted')
                 } else if (res.error){
                     alert("Something Brokes");
@@ -109,6 +109,7 @@ var store = {
             })
             .catch(() => console.log('error'))
     }
+    
 }
 
 

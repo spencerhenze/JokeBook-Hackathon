@@ -4,7 +4,8 @@ var router = express.Router();
 var Posts = require('../models/post.js');
 
 router.post('/', (req, res, next) => {
-    if (req.session.uid) {
+    console.log(req)
+    if (req.session.id) {
         Posts.create(req.body).then(() => {
             console.log('worked');
             res.send({ message: "successfully posted" })
