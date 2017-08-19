@@ -26,7 +26,7 @@
               </div>
             </form>
           </div>
-          <div class="navbar-form navbar-left login">
+          <div v-if="loggedIn"class="navbar-form navbar-left login">
             <form @submit.prevent="login()">
               <div class="form-group">
                 <input type="text" class="form-control  " placeholder="Username"> <!-- v-model="query"-->
@@ -68,6 +68,7 @@
     data() {
       return {
         // query=''
+        loggedIn: true
       }
     },
     methods: {
@@ -84,6 +85,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     
+
     .navbar {
       margin-top: -5vh;
       background-color: #3b5998;
@@ -108,16 +110,25 @@
 
     .dropdown-toggle {
       color: black;
+      background-color: #8b9dc3;
+
     }
 
     .dropdown{
       padding-top: .5vh;
+      background-color: #8b9dc3;
+    }
+
+    li.dropdown.open{
+        background-color: #8b9dc3;
+
     }
 
     li {
       color: black;
       font-size: 2rem;
       padding: 1rem;
+      background-color:#dfe3ee
     }
 
     .navbar-header{

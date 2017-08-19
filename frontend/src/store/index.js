@@ -52,6 +52,25 @@ var store = {
 
     vote(type){
 
+    },
+
+    addComment(comment, userId){
+
+    },
+    
+    deleteComment(commentId, userId){
+
+    },
+    addPost(post, userId){
+
+    },
+
+    deletePost(postId, userId){
+
+    },
+
+    logIn(userId, password){
+
     }
 
 
