@@ -19,8 +19,8 @@ var state = {
             comments: ['Funny Joke']
         },
         {
-            title: 'Whats brown and sticky',
-            body: 'A stick',
+            title: 'Where does George Washington keep his armies',
+            body: 'In his sleevies',
             created: 8 - 8 - 17,
             votes: 7,
             categories: 'Dad Jokes',

@@ -29,7 +29,7 @@
           <div v-if="loggedIn"class="navbar-form navbar-left login">
             <form @submit.prevent="login()">
               <div class="form-group">
-                <input type="text" class="form-control  " placeholder="Username"v-model="username">
+                <input type="text" class="form-control" placeholder="Username"v-model="username">
               </div>
                 <input type="text" class="form-control" placeholder="Password" v-model="password">
                 <button type="submit" class="btn btn-default btn-login">Login/Register</button>
@@ -87,7 +87,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    
+    @font-face {
+        font-family: Klavika;
+        src: url('../assets/klavika.otf');
+    }
 
     .navbar {
       margin-top: -8vh;
@@ -98,6 +101,7 @@
 
     .login{
       padding: .3vh 0 0 5vw;
+      font-family: Klavika;
 
     }
 

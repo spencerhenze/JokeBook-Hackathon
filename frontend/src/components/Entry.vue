@@ -30,9 +30,6 @@
           <div class="col-xs-1">
             <span>Tags</span>
           </div>
-          <div class="col-xs-1">
-            <span>Commen</span>
-          </div>
         </div>
         <hr>
       </div>
@@ -72,9 +69,9 @@
             </h5>
           </div>
           <div class="col-xs-1">
-            <h5 @click="comments(id)" class="comments">
+            <a><h5 @click="comments(id)" class="comments">
               Comments
-            </h5>
+            </h5></a>
           </div>
         </div>
         <hr>
@@ -124,9 +121,9 @@
     src: url('../assets/klavika.otf');
   }
 
-.container-fluid{
-  background-color: #dfe3ee;
-}
+  .container-fluid {
+    background-color: #dfe3ee
+  }
 
   .top-ten {
     margin-bottom: 5rem;

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     
-    <jokecomments></jokecomments>
+    <entry></entry>
   </div>
 </template>
 
@@ -23,7 +23,6 @@ export default {
 </script>
 
 <style>
-
 @font-face {
     font-family: Klavika Bold;
     src: url('./assets/KlavikaBold.ttf');
