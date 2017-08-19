@@ -30,9 +30,13 @@ router.post("/login", (req, res) => {
 
     Users.findOne({ email: req.body.email }).then((user) => {
         //console.log(req.body.password);
-        user.validatePassword(req.body.password).then((valid) => {
+        if (!user) {
+            return res.send({ error: 'invalid email or password' })
+        }
+        user.validatePassword(req.body.password)
+            .then((valid) => {
                 if (!valid) {
-                    return res.send({ error: 'Invalid login or Password ' });
+                    return res.send({ error: 'Invaaalid lugin or passsawuuurd' });
                 }
                 //console.log(user);
                 req.session.uid = user.id;
@@ -41,15 +45,19 @@ router.post("/login", (req, res) => {
 
                 delete user.password;
 
+
+                console.log("Logged in correctly");
                 res.send({
                     message: 'success',
                     data: user
                 });
+            }).catch(err => {
+                res.send({ error: err || 'Invaaalid lugin or passsawuuurd' }); //if false alarm return the regular thing.                
             })
             // console.log(valid);
 
     }).catch(err => {
-        res.send({ error: err || 'Invaaalid lugin or passsaword' }); //if false alarm return the regular thing.
+        res.send({ error: err || 'Invaaalid lugin or passsawuuurd' }); //if false alarm return the regular thing.
     });
 
 });
