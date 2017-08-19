@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     
-    <jokecomments></jokecomments>
+    <jokepost></jokepost>
   </div>
 </template>
 
@@ -11,13 +11,15 @@
 import Navbar from './components/Navbar'
 import Entry from './components/Entry'
 import Jokecomments from './components/Jokecomments'
+import Jokepost from './components/Jokepost'
 
 export default {
   name: 'app',
   components: {
     Navbar,
     Entry,
-    Jokecomments
+    Jokecomments,
+    Jokepost
   }
 }
 </script>
