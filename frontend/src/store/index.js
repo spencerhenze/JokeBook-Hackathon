@@ -1,7 +1,7 @@
 import $ from 'jquery'
 
 
-var ip = "192.168.0.93:3005";
+var ip = "192.168.0.93:3003";
 var state = {
     results: [
         {
@@ -55,30 +55,44 @@ var store = {
         })
     },
 
-    vote(type, postId, userId){
+    // vote(type, postId, userId){
 
-    },
+    // },
 
-    addComment(comment, userId){
+    // addComment(comment, userId){
 
-    },
+    // },
     
-    deleteComment(commentId, userId){
+    // deleteComment(commentId, userId){
 
-    },
-    addPost(post, userId){
+    // },
+    // addPost(post, userId){
 
-    },
+    // },
 
-    deletePost(postId, userId){
+    // deletePost(postId, userId){
 
-    },
+    // },
 
-    logIn(email, password){
-        $.post()
+    login(obj){
+        console.log(obj)
+        $.ajax({
+            contentType: 'application/json',
+            method: 'POST',
+            url: `${ip}/login`,
+            data: JSON.stringify(obj)
+        })
+        .then(console.log('work'))
+        .fail(console.log('you suck'))
+
+        //console.log (ip + '/login');
+        // $.post(ip + "/login", obj)
+        // .then(user => {
+        //     console.log('it worked')
+        // })
+        // .then(console.log)
+        // .fail(console.log('error'))
     }
-
-
 }
 
 

@@ -61,7 +61,7 @@
 
 <script>
   //for when we need a store
-  // import { store } from '../store'
+  import { store } from '../store'
   import $ from 'jquery'
   export default {
     name: 'navbar',
@@ -80,8 +80,20 @@
         this.results = res
       })
       },
-      logIn(email, password){
-        store.logIn(email, password)
+
+      toggleLogin(){
+        this.loggedIn = !this.loggedIn
+        // if (this.loggedIn == true){
+        //   this.loggedIn = false
+        // } else {loggedIn = true}
+      },
+      login(){
+        //console.log(store.login)
+        var obj = {
+          email: this.email,
+          password: this.password
+        }
+        store.login(obj)
       }
     },
   }
