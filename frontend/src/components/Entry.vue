@@ -1,12 +1,11 @@
 <template>
 
   <div class="entry">
-    <ENavbar></ENavbar>
+    <Navbar></Navbar>
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12">
           <h1 class="top-ten">All-Time Top 10 Jokebook Jokes</h1>
-          <hr>
         </div>
       </div>
       <div class="row">

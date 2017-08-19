@@ -1,7 +1,6 @@
 <template>
 
     <div class="jokepost">
-        <navbar></navbar>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12">
@@ -12,7 +11,7 @@
                         <hr>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div col-xs-12>
                     <div class="posts">
                         <div v-for "joke in jokeList">
@@ -20,11 +19,11 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="form-group">
                 <label for="comment">New Joke Post:</label>
-                <textarea class="form-control" rows="5" id="comment"></textarea>
-                <input @click="addPost(joke,userId)" type="submit" class="btn btn-info submit-button" value="Post">
+                <textarea class="form-control" rows="5" id="comment" v-model="joke"></textarea>
+                <button @click="addPost(userId)" type="submit" class="btn btn-info submit-button" value="Post">Post</button>
             </div>
         </div>
     </div>
@@ -37,13 +36,15 @@
         name: 'jokepost',
         data() {
             return {
-                jokeList: store.state.posts
+                jokeList: store.state.posts,
+                joke: ''
             }
         },
         methods: {
 
-            addPost(joke, userId) {
-                state.posts.push(joke)
+            addPost() {
+                joke = this.joke
+                state.addPost(joke)
             },
             removePost(joke, userId) {
                 var index = posts.indexOf(joke)

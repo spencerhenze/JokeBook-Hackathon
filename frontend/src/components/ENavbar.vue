@@ -74,6 +74,9 @@
       // .then(res =>{
       //   this.results = res
       // })
+      login(){
+        
+      }
     },
   }
 

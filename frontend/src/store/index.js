@@ -1,7 +1,7 @@
 import $ from 'jquery'
 
 
-var ip = "192.168.0.93:3003";
+var ip = "//192.168.0.93:3003";
 var state = {
     results: [
         {
@@ -37,7 +37,7 @@ var state = {
             comments: ['Funny Joke']
         }
     ],
-    users: [
+    posts: [
 
     ]
 }
@@ -74,21 +74,32 @@ var store = {
 
     // },
 
-    login(obj){
-        console.log(obj)
-        // $.ajax({
-        //     contentType: 'application/json',
-        //     method: 'POST',
-        //     url: `${ip}/login`,
-        //     data: JSON.stringify(obj)
-        // })
-        // .then(() => console.log('work'))
-        // .fail(() => console.log('you suck'))
-
-        //console.log (ip + '/login');
+    login(obj, cb){
         $.post(ip + "/login", obj)
-        .then(() => console.log('you win'))
-        .catch(() => console.log('error'))
+            .then((res) => {
+            
+                // res = JSON.parse(res);
+                if (res.message){
+                    cb()
+                } else if (res.error){
+                    alert("Invalid Email or password");
+                }
+
+            })
+            .catch(() => console.log('error'))
+    },
+    addJoke(joke){
+        $.post(ip + "/post", joke)
+            .then((res) => {
+            
+                if (res.message){
+                    alert('Posted')
+                } else if (res.error){
+                    alert("Something Brokes");
+                }
+
+            })
+            .catch(() => console.log('error'))
     }
 }
 

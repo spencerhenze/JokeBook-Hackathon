@@ -11,9 +11,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-          <div class="icon">
-            <span class="j">J</span>
-          </div>
+          
+            <span class="j">Jokebook</span>
+         
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -27,11 +27,11 @@
             </form>
           </div>
           <div v-if="loggedIn"class="navbar-form navbar-left login">
-            <form @submit.prevent="login()">
+            <form @submit.prevent="login(toggleLogin)">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="email"v-model="email">
               </div>
-                <input type="text" class="form-control" placeholder="Password" v-model="password">
+                <input type="password" class="form-control" placeholder="Password" v-model="password">
                 <button type="submit" class="btn btn-default btn-login">Login/Register</button>
             </form>
           </div>
@@ -55,12 +55,13 @@
     </nav>
 
 
-
+<Jokepost v-if="!loggedIn"></Jokepost>
   </div>
 </template>
 
 <script>
   //for when we need a store
+  import Jokepost from './Jokepost'
   import { store } from '../store'
   import $ from 'jquery'
   export default {
@@ -87,15 +88,19 @@
         //   this.loggedIn = false
         // } else {loggedIn = true}
       },
-      login(){
+      login(toggleLogin){
         //console.log(store.login)
         var obj = {
           email: this.email,
           password: this.password
         }
-        store.login(obj)
+        store.login(obj, toggleLogin)
+        // toggleLogin()
       }
     },
+    components: {
+    Jokepost
+    }
   }
 
 </script>
@@ -108,7 +113,7 @@
     }
 
     .navbar {
-      margin-top: -8vh;
+      margin-top: -5vh;
       background-color: #3b5998;
       /* font-family: Klavika Bold; */
     }
@@ -155,6 +160,7 @@
 
     .navbar-header{
       margin-left: 25rem;
+      margin-top: 1rem;
     }
 
     .icon{
@@ -169,9 +175,7 @@
 
     .j{
       font-size: 3.5vh;
-      position: relative;
-      bottom: .45vh;
-      left: .3vw;
+      color: white;
     }
 
     .input-lg{
