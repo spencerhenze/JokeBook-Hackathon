@@ -74,6 +74,14 @@ var store = {
 
     // },
 
+    // getJokes(){
+    //     $.get(ip + '/post/top')
+    //         .then((res)=>{
+
+    //         })
+    //         .catch(()=> console.log('error'))
+    // },
+
     login(obj, cb){
         $.post(ip + "/login", obj)
             .then((res) => {
