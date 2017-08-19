@@ -34,23 +34,26 @@ var state = {
             categories: 'Dad Jokes',
             comments: ['Funny Joke']
         }
+    ],
+    users: [
+
     ]
 }
 
 var store = {
     state: state,
-    // search(query){
-    //     var base = "mongodb://booyah:booyah@ds149433.mlab.com:49433/hackathon1?"
-    //     var url = `${base}=${query}`
+    search(query){
+        var base = "mongodb://booyah:booyah@ds149433.mlab.com:49433/hackathon1?"
+        var url = `${base}=${query}`
 
-    //     return new Promise(function(resolve, reject){
-    //         $.get(url)
-    //             .then(data=>{resolve(data)})
-    //             .catch(error=>{reject(error)});
-    //     })
-    // },
+        return new Promise(function(resolve, reject){
+            $.get(url)
+                .then(data=>{resolve(data)})
+                .catch(error=>{reject(error)});
+        })
+    },
 
-    vote(type){
+    vote(type, postId, userId){
 
     },
 

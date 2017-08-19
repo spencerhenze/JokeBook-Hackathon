@@ -41,10 +41,10 @@
                 <span class="like">{{joke.votes}}</span>
               </div>
               <div class="col-xs-3">
-                <span @click="vote(up)" class="glyphicon glyphicon-thumbs-up thumb"></span>
+                <span @click="vote(up, postId, userId)" class="glyphicon glyphicon-thumbs-up thumb"></span>
               </div>
               <div class="col-xs-3">
-                <span @click="vote(down)" class="glyphicon glyphicon-thumbs-down thumb"></span>
+                <span @click="vote(down, postId, userId)" class="glyphicon glyphicon-thumbs-down thumb"></span>
               </div>
               <div class="col-xs-3">
                 <span class="rank">#1</span>
@@ -92,8 +92,8 @@
       }
     },
     methods: {
-      vote(type) {
-        store.vote(type)
+      vote(type, postId, userId) {
+        store.vote(type, postId, userId)
       },
       comment(id) {
         store.comment(id)
