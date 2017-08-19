@@ -76,22 +76,19 @@ var store = {
 
     login(obj){
         console.log(obj)
-        $.ajax({
-            contentType: 'application/json',
-            method: 'POST',
-            url: `${ip}/login`,
-            data: JSON.stringify(obj)
-        })
-        .then(console.log('work'))
-        .fail(console.log('you suck'))
+        // $.ajax({
+        //     contentType: 'application/json',
+        //     method: 'POST',
+        //     url: `${ip}/login`,
+        //     data: JSON.stringify(obj)
+        // })
+        // .then(() => console.log('work'))
+        // .fail(() => console.log('you suck'))
 
         //console.log (ip + '/login');
-        // $.post(ip + "/login", obj)
-        // .then(user => {
-        //     console.log('it worked')
-        // })
-        // .then(console.log)
-        // .fail(console.log('error'))
+        $.post(ip + "/login", obj)
+        .then(() => console.log('you win'))
+        .catch(() => console.log('error'))
     }
 }
 
