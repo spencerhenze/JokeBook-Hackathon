@@ -19,16 +19,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-7">
+                <div class="col-xs-5">
                     <div class="joke">
                         <h5 @click="togglePunch(show)" class="joke-text">
                             {{jokes[0].title}}
                         </h5>
                     </div>
                 </div>
-                <div class="col-xs-1">
+                <div class="col-xs-3">
                     <h5 v-if="show" class="punchline">
-                        "{{jokes[0].body}}"
+                        {{jokes[0].body}}
                     </h5>
                 </div>
                 <div class="col-xs-1">
@@ -93,7 +93,10 @@
                 }
             },
             search(){
-                
+
+            },
+            addComment(comment, userId){
+                store.addComment(comment, userId)
             }
         },
         components: {
@@ -152,7 +155,7 @@
 
     .punchline {
         margin-top: 1vh;
-        font-size: 2rem;
+        font-size: 3rem;
         font-family: Klavika;
     }
 

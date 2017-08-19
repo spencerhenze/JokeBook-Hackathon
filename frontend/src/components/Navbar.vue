@@ -21,17 +21,17 @@
           <div class="navbar-form navbar-left">
             <form @submit.prevent="search()">
               <div class="form-group">
-                <input type="text" class="form-control input-lg" placeholder="Search"> <!-- v-model="query"-->
+                <input type="text" class="form-control input-lg" placeholder="Search" v-model="query">
                 <button type="submit" class="btn btn-default btn-lg">Find Joke</button>
               </div>
             </form>
           </div>
-          <div class="navbar-form navbar-left login">
+          <div v-if="loggedIn"class="navbar-form navbar-left login">
             <form @submit.prevent="login()">
               <div class="form-group">
-                <input type="text" class="form-control  " placeholder="Username"> <!-- v-model="query"-->
+                <input type="text" class="form-control" placeholder="email"v-model="email">
               </div>
-                <input type="text" class="form-control" placeholder="Password"> <!-- v-model="query"-->
+                <input type="text" class="form-control" placeholder="Password" v-model="password">
                 <button type="submit" class="btn btn-default btn-login">Login/Register</button>
             </form>
           </div>
@@ -61,21 +61,40 @@
 
 <script>
   //for when we need a store
-  // import { store } from '../store'
+  import { store } from '../store'
   import $ from 'jquery'
   export default {
     name: 'navbar',
     data() {
       return {
-        // query=''
+        query: '',
+        email: '',
+        password: '',
+        loggedIn: true
       }
     },
     methods: {
-      // search(){
-      // store.search(this.query)
-      // .then(res =>{
-      //   this.results = res
-      // })
+      search(){
+      store.search(this.query)
+      .then(res =>{
+        this.results = res
+      })
+      },
+
+      toggleLogin(){
+        this.loggedIn = !this.loggedIn
+        // if (this.loggedIn == true){
+        //   this.loggedIn = false
+        // } else {loggedIn = true}
+      },
+      login(){
+        //console.log(store.login)
+        var obj = {
+          email: this.email,
+          password: this.password
+        }
+        store.login(obj)
+      }
     },
   }
 
@@ -83,9 +102,13 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    
+    @font-face {
+        font-family: Klavika;
+        src: url('../assets/klavika.otf');
+    }
+
     .navbar {
-      margin-top: -5vh;
+      margin-top: -8vh;
       background-color: #3b5998;
       /* font-family: Klavika Bold; */
     }
@@ -93,6 +116,7 @@
 
     .login{
       padding: .3vh 0 0 5vw;
+      font-family: Klavika;
 
     }
 
@@ -108,16 +132,25 @@
 
     .dropdown-toggle {
       color: black;
+      background-color: #8b9dc3;
+
     }
 
     .dropdown{
       padding-top: .5vh;
+      background-color: #8b9dc3;
+    }
+
+    li.dropdown.open{
+        background-color: #8b9dc3;
+
     }
 
     li {
       color: black;
       font-size: 2rem;
       padding: 1rem;
+      background-color:#dfe3ee
     }
 
     .navbar-header{

@@ -27,7 +27,6 @@ export default {
 </script>
 
 <style>
-
 @font-face {
     font-family: Klavika Bold;
     src: url('./assets/KlavikaBold.ttf');

@@ -1,13 +1,15 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var cors = require('cors')
-
+var mongoose = require("mongoose");
+var cors = require('cors');
+var sessions = require('./auth/session');
 var serverConf = require('./config/serverconfig');
 var database = require('./config/dbconfig');
 var server = express();
 
-
 server.options('*', cors());
+
+server.use(sessions);
 server.use(express.static(__dirname + "/www"));
 server.use(bodyParser.json()); //JSON middleware
 server.use(bodyParser.urlencoded({ extended: true }));
@@ -16,6 +18,10 @@ server.use(bodyParser.urlencoded({ extended: true }));
 
 var postRouter = require("./routes/post-routes");
 server.use('/api/post', postRouter);
+
+
+var authRouter = require("./auth/auth-routes.js");
+server.use("/", authRouter);
 
 if (serverConf.portStart < serverConf.portEnd) {
     for (var sport = serverConf.portStart; sport < serverConf.portEnd; sport++) {
