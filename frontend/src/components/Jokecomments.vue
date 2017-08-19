@@ -21,13 +21,13 @@
                 </div>
                 <div class="col-xs-7">
                     <div class="joke">
-                        <h5 class="joke-text">
+                        <h5 @click="togglePunch(show)" class="joke-text">
                             {{jokes[0].title}}
                         </h5>
                     </div>
                 </div>
                 <div class="col-xs-1">
-                    <h5 class="punchline">
+                    <h5 v-if="show" class="punchline">
                         "{{jokes[0].body}}"
                     </h5>
                 </div>
@@ -63,12 +63,21 @@
         data() {
             return {
                 jokes: store.state.results,
+                show: false
             }
         },
         methods: {
-            vote(type){
-        store.vote(type)
-      },
+            vote(type) {
+                store.vote(type)
+            },
+            togglePunch(show) {
+                if (show == false) {
+                    this.show = true;
+                }
+                if (show == true) {
+                    this.show = false;
+                }
+            }
         },
         components: {
             Navbar
@@ -80,9 +89,10 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     @font-face {
-    font-family: Klavika;
-    src: url('../assets/klavika.otf');
+        font-family: Klavika;
+        src: url('../assets/klavika.otf');
     }
+
     .thumb {
         color: #3b5998;
         font-size: 20px;
@@ -119,7 +129,6 @@
     }
 
     .punchline {
-
         margin-top: 1vh;
         font-size: 2rem;
         font-family: Klavika;
@@ -136,9 +145,8 @@
         font-family: Klavika;
     }
 
-    .user{
+    .user {
         text-align: left;
         font-family: Klavika;
     }
-
 </style>

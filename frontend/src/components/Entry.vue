@@ -56,13 +56,13 @@
           </div>
           <div class="col-xs-8">
             <div class="joke">
-              <h5 class="joke-text">
+              <h5 @click="togglePunch(show)"class="joke-text">
                 {{joke.title}}
               </h5>
             </div>
           </div>
           <div class="col-xs-1">
-            <h5 class="punchline">
+            <h5 v-if="show" class="punchline">
               "{{joke.body}}"
             </h5>
           </div>
@@ -90,7 +90,8 @@
     name: 'entry',
     data() {
       return {
-        jokes: store.state.results
+        jokes: store.state.results,
+        show: false
       }
     },
     methods: {
@@ -99,7 +100,15 @@
       },
       comment(id){
         store.comment(id)
-      }
+      },
+       togglePunch(show) {
+                if (show == false) {
+                    this.show = true;
+                }
+                if (show == true) {
+                    this.show = false;
+                }
+            }
 
     },
     components: {
