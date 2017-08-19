@@ -21,7 +21,7 @@
           <div class="navbar-form navbar-left">
             <form @submit.prevent="search()">
               <div class="form-group">
-                <input type="text" class="form-control input-lg" placeholder="Search"> <!-- v-model="query"-->
+                <input type="text" class="form-control input-lg" placeholder="Search" v-model="query">
                 <button type="submit" class="btn btn-default btn-lg">Find Joke</button>
               </div>
             </form>
@@ -29,9 +29,9 @@
           <div v-if="loggedIn"class="navbar-form navbar-left login">
             <form @submit.prevent="login()">
               <div class="form-group">
-                <input type="text" class="form-control  " placeholder="Username"> <!-- v-model="query"-->
+                <input type="text" class="form-control  " placeholder="Username"v-model="username">
               </div>
-                <input type="text" class="form-control" placeholder="Password"> <!-- v-model="query"-->
+                <input type="text" class="form-control" placeholder="Password" v-model="password">
                 <button type="submit" class="btn btn-default btn-login">Login/Register</button>
             </form>
           </div>
@@ -67,16 +67,19 @@
     name: 'navbar',
     data() {
       return {
-        // query=''
+        query: '',
+        username: '',
+        password: '',
         loggedIn: true
       }
     },
     methods: {
-      // search(){
-      // store.search(this.query)
-      // .then(res =>{
-      //   this.results = res
-      // })
+      search(){
+      store.search(this.query)
+      .then(res =>{
+        this.results = res
+      })
+      }
     },
   }
 
@@ -87,7 +90,7 @@
     
 
     .navbar {
-      margin-top: -5vh;
+      margin-top: -8vh;
       background-color: #3b5998;
       /* font-family: Klavika Bold; */
     }
