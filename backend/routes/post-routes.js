@@ -31,6 +31,14 @@ router.get('/', (req, res, next) => {
     });
 });
 
+router.put('/:postId', (req, res, next) => {
+    Posts.findById(req.params.postId).then((post) => {
+        if (post.userId === req.session.uid) {
+            Posts.findByIdAndUpdate(req.params.postId, req.body);
+        }
+    })
+});
+
 router.put('/:postId/vote', (req, res, next) => {
     if (req.session.uid) {
         Posts.findById(req.params.postId).then((post) => {
@@ -47,6 +55,13 @@ router.put('/:postId/vote', (req, res, next) => {
 
 })
 
+router.delete('/:postId', (req, res, next) => {
+    Posts.findById(req.params.postId).then((post) => {
+        if (post.userId === req.session.uid) {
+            Posts.findByIdAndRemove(req.params.postId);
+        }
+    })
+});
 
 router.use(handleError);
 
