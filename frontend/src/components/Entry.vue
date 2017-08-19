@@ -1,7 +1,7 @@
 <template>
 
   <div class="entry">
-    <navbar></navbar>
+    <ENavbar></ENavbar>
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-12">
@@ -86,6 +86,7 @@
 <script>
   import { store } from '../store'
   import Navbar from './Navbar'
+  import ENavbar from './ENavbar'
   export default {
     name: 'entry',
     data() {
@@ -112,7 +113,8 @@
 
     },
     components: {
-      Navbar
+      Navbar,
+      ENavbar
     }
   }
 

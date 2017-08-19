@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     
-    <jokepost></jokepost>
+    <entry></entry>
   </div>
 </template>
 
@@ -12,10 +12,12 @@ import Navbar from './components/Navbar'
 import Entry from './components/Entry'
 import Jokecomments from './components/Jokecomments'
 import Jokepost from './components/Jokepost'
+import ENavbar from './components/ENavbar'
 
 export default {
   name: 'app',
   components: {
+    ENavbar,
     Navbar,
     Entry,
     Jokecomments,
