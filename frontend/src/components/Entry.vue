@@ -53,7 +53,7 @@
           </div>
           <div class="col-xs-8">
             <div class="joke">
-              <h5 @click="togglePunch(show)" class="joke-text">
+              <h5 @click="togglePunch(show, postId)" class="joke-text">
                 {{joke.title}}
               </h5>
             </div>
@@ -98,7 +98,7 @@
       comment(id) {
         store.comment(id)
       },
-      togglePunch(show) {
+      togglePunch(show, postId) {
         if (show == false) {
           this.show = true;
         }

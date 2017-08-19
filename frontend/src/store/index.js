@@ -1,5 +1,7 @@
 import $ from 'jquery'
 
+
+var ip = "192.168.0.93:3005";
 var state = {
     results: [
         {
@@ -72,8 +74,8 @@ var store = {
 
     },
 
-    logIn(userId, password){
-
+    logIn(email, password){
+        $.post()
     }
 
 

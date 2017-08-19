@@ -29,7 +29,7 @@
           <div v-if="loggedIn"class="navbar-form navbar-left login">
             <form @submit.prevent="login()">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Username"v-model="username">
+                <input type="text" class="form-control" placeholder="email"v-model="email">
               </div>
                 <input type="text" class="form-control" placeholder="Password" v-model="password">
                 <button type="submit" class="btn btn-default btn-login">Login/Register</button>
@@ -68,7 +68,7 @@
     data() {
       return {
         query: '',
-        username: '',
+        email: '',
         password: '',
         loggedIn: true
       }
@@ -79,6 +79,9 @@
       .then(res =>{
         this.results = res
       })
+      },
+      logIn(email, password){
+        store.logIn(email, password)
       }
     },
   }
