@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-var posts = require('../models/post.js');
+var Posts = require('../models/post.js');
 
 router.post('/', (req, res, next) => {
     if (req.session.uid) {
-        posts.create(req.body).then(() => {
+        Posts.create(req.body).then(() => {
             console.log('worked');
             res.send({ message: "successfully posted" })
         }).catch(next);
@@ -13,21 +13,35 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/top', (req, res, next) => {
-    posts.find({}).limit(10).sort({ totalVotes: 1 }).exec(post => {
-        res.send(post);
-    });
+    Posts.find({})
+        .limit(10)
+        .sort({ totalVotes: -1 })
+        .exec((err, posts) => {
+
+            console.log("requesting top posts", posts)
+
+            res.send(posts);
+        });
 
 })
 
 router.get('/', (req, res, next) => {
-    posts.find({}).then((result) => {
+    Posts.find({}).then((result) => {
         res.send(result);
     });
 });
 
+router.put('/:postId', (req, res, next) => {
+    Posts.findById(req.params.postId).then((post) => {
+        if (post.userId === req.session.uid) {
+            Posts.findByIdAndUpdate(req.params.postId, req.body);
+        }
+    })
+});
+
 router.put('/:postId/vote', (req, res, next) => {
     if (req.session.uid) {
-        posts.findById(req.params.postId).then((post) => {
+        Posts.findById(req.params.postId).then((post) => {
             post.votes[req.session.uid] = req.body.vote;
 
             for (vote in post.votes) {
@@ -41,6 +55,13 @@ router.put('/:postId/vote', (req, res, next) => {
 
 })
 
+router.delete('/:postId', (req, res, next) => {
+    Posts.findById(req.params.postId).then((post) => {
+        if (post.userId === req.session.uid) {
+            Posts.findByIdAndRemove(req.params.postId);
+        }
+    })
+});
 
 router.use(handleError);
 

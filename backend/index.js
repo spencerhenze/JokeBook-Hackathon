@@ -7,7 +7,7 @@ var serverConf = require('./config/serverconfig');
 var database = require('./config/dbconfig');
 var server = express();
 
-server.options('*', cors());
+server.use(cors());
 
 server.use(sessions);
 server.use(express.static(__dirname + "/www"));
@@ -15,6 +15,8 @@ server.use(bodyParser.json()); //JSON middleware
 server.use(bodyParser.urlencoded({ extended: true }));
 
 
+var commentRouter = require("./routes/comment-routes");
+server.use('/api/comment', commentRouter);
 
 var postRouter = require("./routes/post-routes");
 server.use('/api/post', postRouter);

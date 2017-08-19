@@ -23,16 +23,20 @@ router.post("/register", (req, res) => {
 
 });
 
-
 router.post("/login", (req, res) => {
-    //first check if username is a email or username
-    //console.log(req);
+    console.log('youre hitting login')
+        //first check if username is a email or username
+        //console.log(req);
 
     Users.findOne({ email: req.body.email }).then((user) => {
         //console.log(req.body.password);
-        user.validatePassword(req.body.password).then((valid) => {
+        if (!user) {
+            return res.send({ error: 'Invaaalid lugin er passsawuuurd' })
+        }
+        user.validatePassword(req.body.password)
+            .then((valid) => {
                 if (!valid) {
-                    return res.send({ error: 'Invalid login or Password ' });
+                    return res.send({ error: 'Invaaalid lugin er passsawuuurd' });
                 }
                 //console.log(user);
                 req.session.uid = user.id;
@@ -41,15 +45,19 @@ router.post("/login", (req, res) => {
 
                 delete user.password;
 
+
+                console.log("Logged in correctly");
                 res.send({
                     message: 'success',
                     data: user
                 });
+            }).catch(err => {
+                res.send({ error: err || 'Invaaalid lugin er passsawuuurd' }); //if false alarm return the regular thing.                
             })
             // console.log(valid);
 
     }).catch(err => {
-        res.send({ error: err || 'Invaaalid lugin or passsaword' }); //if false alarm return the regular thing.
+        res.send({ error: err || 'Invaaalid lugin er passsawuuurd' }); //if false alarm return the regular thing.
     });
 
 });

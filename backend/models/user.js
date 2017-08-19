@@ -41,9 +41,10 @@ schema.methods.validatePassword = function(password) {
         bcrypt.compare(password, this.password, function(err, isMatch) {
 
             if (err || !isMatch) {
-                return reject(err);
+                return reject({ error: 'bad request', message: 'invalid password' });
+            } else {
+                return resolve(isMatch);
             }
-            return resolve(isMatch);
         });
     })
 };
