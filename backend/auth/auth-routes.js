@@ -31,12 +31,12 @@ router.post("/login", (req, res) => {
     Users.findOne({ email: req.body.email }).then((user) => {
         //console.log(req.body.password);
         if (!user) {
-            return res.send({ error: 'invalid email or password' })
+            return res.send({ error: 'Invaaalid lugin er passsawuuurd' })
         }
         user.validatePassword(req.body.password)
             .then((valid) => {
                 if (!valid) {
-                    return res.send({ error: 'Invaaalid lugin or passsawuuurd' });
+                    return res.send({ error: 'Invaaalid lugin er passsawuuurd' });
                 }
                 //console.log(user);
                 req.session.uid = user.id;
@@ -52,12 +52,12 @@ router.post("/login", (req, res) => {
                     data: user
                 });
             }).catch(err => {
-                res.send({ error: err || 'Invaaalid lugin or passsawuuurd' }); //if false alarm return the regular thing.                
+                res.send({ error: err || 'Invaaalid lugin er passsawuuurd' }); //if false alarm return the regular thing.                
             })
             // console.log(valid);
 
     }).catch(err => {
-        res.send({ error: err || 'Invaaalid lugin or passsawuuurd' }); //if false alarm return the regular thing.
+        res.send({ error: err || 'Invaaalid lugin er passsawuuurd' }); //if false alarm return the regular thing.
     });
 
 });

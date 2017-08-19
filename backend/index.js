@@ -15,6 +15,8 @@ server.use(bodyParser.json()); //JSON middleware
 server.use(bodyParser.urlencoded({ extended: true }));
 
 
+var commentRouter = require("./routes/comment-routes");
+server.use('/api/comment', commentRouter);
 
 var postRouter = require("./routes/post-routes");
 server.use('/api/post', postRouter);
