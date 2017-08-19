@@ -29,7 +29,7 @@ router.post("/login", (req, res) => {
     //console.log(req);
 
     Users.findOne({ email: req.body.email }).then((user) => {
-        console.log(req.body.password);
+        //console.log(req.body.password);
         user.validatePassword(req.body.password).then((valid) => {
                 if (!valid) {
                     return res.send({ error: 'Invalid login or Password ' });
